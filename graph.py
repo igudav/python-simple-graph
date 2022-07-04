@@ -2,7 +2,7 @@ import numpy as np
 import scipy.stats as sps
 import matplotlib.pyplot as plt
 from tqdm.auto import trange
-from typing import Hashable, Any, Union
+from typing import Hashable, Any, Union, Optional
 
 
 class Graph:
@@ -66,7 +66,14 @@ class Graph:
         idx2 = self._key_to_idx[key2]
         self._adjacency_matrix[(idx1, idx2), (idx2, idx1)] = True
 
-    def plot(self, ax: plt.Axes = None):
+    def plot(self, ax: Optional[plt.Axes] = None):
+        """Plots the graph using matplotlib
+
+        Args:
+            ax: Axes object from matplotlib where to plot the graph.
+                If not provided the figure is created and shown.
+        """
+
         show = False
         if ax is None:
             show = True
@@ -77,7 +84,7 @@ class Graph:
         y = np.sin(angle)
         ax.scatter(x, y)
         for key, i in self._key_to_idx.items():
-            ax.annotate(str(key), (1.05 * x[i], 1.05 * y[i]))
+            ax.annotate(str(key), (x[i], y[i]))
 
         for i in range(len(self) - 1):
             for j in range(i + 1, len(self)):
