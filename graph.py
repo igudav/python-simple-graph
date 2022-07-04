@@ -128,8 +128,9 @@ class Graph:
                         edge_proba: float) -> "Graph":
         """Creates random graph
 
-        Generate random graph using ______________________ method.
-        The keys for the nodes are successive integers, payloads are empty.
+        Generate random graph using Erdos-Renyi model with optionally random
+        number of nodes. The keys for the nodes are successive integers,
+        payloads are empty.
 
         Args:
             n_nodes (int or distribution): number of nodes to generate.
